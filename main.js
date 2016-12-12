@@ -4,7 +4,8 @@ $(document).ready(function(){
   var wheelSelectionArray = ["random", "color", "name", "id"]
 
   wheel = new wheelnav("wheelDiv");
-  wheel.wheelRadius = 100;
+  wheel.wheelRadius = 120;
+  wheel.titleRotateAngle = -45;
   wheel.createWheel(wheelSelectionArray);
 
 
@@ -13,7 +14,10 @@ $(document).ready(function(){
     return Math.ceil(Math.random()*151).toString();
   }
 
+
   $('#random').on('click', function(){
+
+
     let randNum = random151Number();
     console.log(randNum);
     $.ajax({
@@ -23,6 +27,9 @@ $(document).ready(function(){
 
     .done(function(data){
 
+      // Reset Result Div
+      $("#result").empty();
+
       var newResultDiv = $()
       let test= "test"
       let preName = data.name.toString()
@@ -30,7 +37,9 @@ $(document).ready(function(){
       let weight = data.weight.toString() + " kg";
       let height = data.height.toString() + " m";
       let id = randNum.toString();
-      // let photo = unsure of where the image API is
+      let photo = data.sprites.front_shiny
+
+      $("#result").append(`<img src="${photo}" />`);
       $("#result").append(`<h1>${name}</h1>`);
       $("#result").append(`<h1>Height: ${height}</h1>`);
       $("#result").append(`<h1>Weight: ${weight}</h1>`);
