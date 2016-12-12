@@ -1,28 +1,98 @@
 $(document).ready(function(){
-  $("#random").removeClass("hidden");
+
 
   var wheelSelectionArray = ["random", "color", "name", "id"]
 
   wheel = new wheelnav("wheelDiv");
   wheel.wheelRadius = 120;
   wheel.titleRotateAngle = -45;
-  wheel.createWheel(wheelSelectionArray);
+  wheel.initWheel(wheelSelectionArray);
+  wheel.createWheel();
 
 
-  // BROAD BASED FUNCTIONS
-  let random151Number = function() {
-    return Math.ceil(Math.random()*151).toString();
-  }
+  // Wheel Unhide Navigations
+  // wheel.navItems[0].navTitle.mouseup(function() {
+  //   console.log(wheel.navItems);
+  //   // title = random
+  //   $('#buttons').children().addClass('hidden')
+  //   $("#random").removeClass("hidden");
+  // });
+  // wheel.navItems[0].navSlice.mouseup(function() {
+  //   $('#buttons').children().addClass('hidden')
+  //   $("#random").removeClass("hidden");
+  // })
+  //
+  // wheel.navItems[1].navTitle.mouseup(function() {
+  //   $('#buttons').children().addClass('hidden')
+  //   $("#color").removeClass("hidden");
+  // });
+  // wheel.navItems[1].navSlice.mouseup(function() {
+  //   $('#buttons').children().addClass('hidden')
+  //   $("#color").removeClass("hidden");
+  // })
+  //
+  // wheel.navItems[2].navTitle.mouseup(function() {
+  //   $('#buttons').children().addClass('hidden')
+  //   $("#name").removeClass("hidden");
+  // });
+  // wheel.navItems[2].navSlice.mouseup(function() {
+  //   $('#buttons').children().addClass('hidden')
+  //   $("#name").removeClass("hidden");
+  // })
+  //
+  // wheel.navItems[3].navTitle.mouseup(function() {
+  //   $('#buttons').children().addClass('hidden')
+  //   $("#id").removeClass("hidden");
+  // });
+  // wheel.navItems[3].navSlice.mouseup(function() {
+  //   $('#buttons').children().addClass('hidden')
+  //   $("#id").removeClass("hidden");
+  // })
+
+// Wheel Unhide Navigations
+wheel.navItems.forEach(slice => {
+    slice.navSlice.mouseup(function(){
+      let title = slice.title;
+      $('#buttons').children().addClass('hidden')
+      $(`#${title}`).removeClass("hidden");
+    })
+    slice.navTitle.mouseup(function(){
+      let title = slice.title;
+      $('#buttons').children().addClass('hidden')
+      $(`#${title}`).removeClass("hidden");
+    })
+})
 
 
-  $('#random').on('click', function(){
 
 
+
+
+
+
+
+
+// wheel.navItems[0].navigateFunction = function () { alert('Hello wheel!'); };
+// wheel.navItems[1].navSlice.mousedown(function () { alert('Hello navSlice!'); });
+// wheel.navItems[2].navLine.mouseover(function () { alert('Hello navLine!'); });
+// wheel.navItems[3].navTitle.mouseup(function () { alert('Hello navTitle!'); });
+
+// Document Ready Closure
+})
+
+// GENERAL FUNCTIONS
+let random151Number = function() {
+  return Math.ceil(Math.random()*151).toString();
+}
+
+
+// Random Selection Function
+  let randomPoke = function(){
     let randNum = random151Number();
     console.log(randNum);
     $.ajax({
       dataType: "json",
-      url: "http://pokeapi.co/api/v2/pokemon/" + randNum
+      url: "https://pokeapi.co/api/v2/pokemon/" + randNum
     })
 
     .done(function(data){
@@ -30,7 +100,7 @@ $(document).ready(function(){
       // Reset Result Div
       $("#result").empty();
 
-      var newResultDiv = $()
+      // var newResultDiv = $()
       let test= "test"
       let preName = data.name.toString()
       let name = preName.substring(0, 1).toUpperCase() + preName.substring(1, preName.length)
@@ -47,7 +117,4 @@ $(document).ready(function(){
 
 
     })
-  })
-
-// Document Ready Closure
-})
+  }
