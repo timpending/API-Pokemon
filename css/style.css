@@ -166,12 +166,11 @@ main {
 }
 
 #buttons {
-  margin-top: 30%;
   margin-bottom: 10%;
 }
 
 .btn {
-  font-size: 30px;
+  font-size: 18px;
 }
 
 li {
@@ -181,5 +180,4 @@ li {
 .pokeList {
   font-size: 14px;
   margin: 3px;
-
 }

@@ -86,6 +86,7 @@ let random151Number = function() {
 
       // Reset Result Div
       $("#result").empty();
+      $("#listResult").empty();
 
       // var newResultDiv = $()
       let preName = data.name.toString()
@@ -114,45 +115,45 @@ let random151Number = function() {
       url: "https://pokeapi.co/api/v2/pokemon-color/" + enteredColor
     })
     .done(function(data){
-      // console.log(data);
+
       // Reset Result Div
       $("#result").empty();
-      $("#result").append('<ul id="pokeList"></ul>');
+      $("#listResult").empty();
+
+      $("#listResult").append('<ul id="pokeList"></ul>');
       let pokemonArray = data.pokemon_species;
       for (var i = 0; i < 10; i++) {
-        $("#pokeList").append(`<li class="pokeList" onclick="listPoke();">${pokemonArray[i].name}</li>`);
-        //onclick="listPoke(${pokemonArray[i].name});
+        $("#pokeList").append(`<li class="pokeList" onclick="listPoke(this);"><div class="btn btn-info">${pokemonArray[i].name}</div></li>`);
       }
 
     })
   }
 
-  let listPoke = function(e){
-    console.log('test2', $(this).html());
+  let listPoke = function(pokemon){
+    let enteredName = $(pokemon).context.textContent
+    $.ajax({
+      dataType: "json",
+      url: "https://pokeapi.co/api/v2/pokemon/" + enteredName
+    })
 
-    // $.ajax({
-    //   dataType: "json",
-    //   url: "https://pokeapi.co/api/v2/pokemon/" + poke
-    // })
-    //
-    // .done(function(data){
-    //
-    //   // Reset Result Div
-    //   $("#result").empty();
-    //
-    //   let preName = data.name.toString()
-    //   let name = preName.substring(0, 1).toUpperCase() + preName.substring(1, preName.length)
-    //   let weight = data.weight.toString() + " kg";
-    //   let height = data.height.toString() + " m";
-    //   let id = data.id
-    //   let photo = data.sprites.front_shiny
-    //
-    //   $("#result").append(`<img src="${photo}" />`);
-    //   $("#result").append(`<h1>${name}</h1>`);
-    //   $("#result").append(`<h1>Height: ${height}</h1>`);
-    //   $("#result").append(`<h1>Weight: ${weight}</h1>`);
-    //   $("#result").append(`<h1>ID: ${id}</h1>`);
-    // })
+    .done(function(data){
+
+      // Reset Result Div
+      $("#result").empty();
+
+      let preName = data.name.toString()
+      let name = preName.substring(0, 1).toUpperCase() + preName.substring(1, preName.length)
+      let weight = data.weight.toString() + " kg";
+      let height = data.height.toString() + " m";
+      let id = data.id
+      let photo = data.sprites.front_shiny
+
+      $("#result").append(`<img src="${photo}" />`);
+      $("#result").append(`<h1>${name}</h1>`);
+      $("#result").append(`<h1>Height: ${height}</h1>`);
+      $("#result").append(`<h1>Weight: ${weight}</h1>`);
+      $("#result").append(`<h1>ID: ${id}</h1>`);
+    })
   }
 
   // Name Selector Function
@@ -168,6 +169,7 @@ let random151Number = function() {
 
       // Reset Result Div
       $("#result").empty();
+      $("#listResult").empty();
 
       let preName = data.name.toString()
       let name = preName.substring(0, 1).toUpperCase() + preName.substring(1, preName.length)
@@ -198,6 +200,7 @@ let random151Number = function() {
 
       // Reset Result Div
       $("#result").empty();
+      $("#listResult").empty();
 
       let preName = data.name.toString()
       let name = preName.substring(0, 1).toUpperCase() + preName.substring(1, preName.length)
