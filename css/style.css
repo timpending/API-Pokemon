@@ -173,3 +173,13 @@ main {
 .btn {
   font-size: 30px;
 }
+
+li {
+  list-style: none;
+}
+
+.pokeList {
+  font-size: 14px;
+  margin: 3px;
+
+}

@@ -36,26 +36,56 @@
 
     <!-- Main Content -->
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <div id="wheelDiv"></div>
-      </div>
-      <div class="col-sm-8" id="inputs">
-        <div id="result"></div>
+
         <div id="buttons">
           <div id="random" class="btn btn-success hidden" onclick="randomPoke();">Give me a random Pokémon!</div>
-          <div id="color" class="btn btn-info hidden" onclick="colorPoke();">Color me a Pokémon!</div>
 
-          <div id="nameInput" class="btn btn-warning hidden" onclick="namePoke();">Name Pokémon!</div>
+          <div id="color" class="hidden">
+            <form>
+              <label for="colorPokeInput">Pokemon Color:</label>
+              <select class="form-control" id="colorPokeInput">
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="yellow">Yellow</option>
+                <option value="green">Green</option>
+                <option value="black">Black</option>
+                <option value="brown">Brown</option>
+                <option value="purple">Purple</option>
+                <option value="gray">Gray</option>
+                <option value="white">White</option>
+                <option value="pink">Pink</option>
+              </select>
+              <br>
+              <div class="btn btn-info" onclick="colorPoke();">Color me some Pokemon!</div>
+            </form>
+          </div>
+
           <div id="name" class="hidden" >
             <form>
               <label for="namePoke">Pokemon Name:</label>
               <input id="namePokeInput" type="text" placeholder="Wartortle" />
+              <br>
               <div class="btn btn-warning" onclick="namePoke();">Name a Pokémon!</div>
             </form>
           </div>
 
-          <div id="id" class="btn btn-danger hidden" onclick="idPoke();">Grab a Pokémon by ID!</div>
+
+          <div id="id" class="hidden">
+            <form>
+              <label for="idPoke">Pokemon ID:</label>
+              <input id="idPokeInput" type="number" min="1" max="151"  placeholder="<151" />
+              <br>
+              <div class="btn btn-danger" onclick="idPoke();">Grab a Pokémon by ID!</div>
+            </form>
+          </div>
+
         </div>
+      </div>
+      <div class="col-sm-6" id="inputs">
+        <div id="result"></div>
+
       </div>
     </div>
 
