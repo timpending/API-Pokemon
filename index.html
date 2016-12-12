@@ -44,13 +44,22 @@
         <div id="buttons">
           <div id="random" class="btn btn-success hidden" onclick="randomPoke();">Give me a random Pokémon!</div>
           <div id="color" class="btn btn-info hidden" onclick="colorPoke();">Color me a Pokémon!</div>
-          <div id="name" class="btn btn-warning hidden" onclick="namePoke();">Name Pokémon!</div>
+
+          <div id="nameInput" class="btn btn-warning hidden" onclick="namePoke();">Name Pokémon!</div>
+          <div id="name" class="hidden" >
+            <form>
+              <label for="namePoke">Pokemon Name:</label>
+              <input id="namePokeInput" type="text" placeholder="Wartortle" />
+              <div class="btn btn-warning" onclick="namePoke();">Name a Pokémon!</div>
+            </form>
+          </div>
+
           <div id="id" class="btn btn-danger hidden" onclick="idPoke();">Grab a Pokémon by ID!</div>
         </div>
       </div>
     </div>
 
-    <div id="test" class="btn btn-warning">TEST ME</div>
+    <!-- <div id="test" class="btn btn-warning">TEST ME</div> -->
 
     <!-- Footer -->
     <footer></footer>

@@ -64,19 +64,6 @@ wheel.navItems.forEach(slice => {
 })
 
 
-
-
-
-
-
-
-
-
-// wheel.navItems[0].navigateFunction = function () { alert('Hello wheel!'); };
-// wheel.navItems[1].navSlice.mousedown(function () { alert('Hello navSlice!'); });
-// wheel.navItems[2].navLine.mouseover(function () { alert('Hello navLine!'); });
-// wheel.navItems[3].navTitle.mouseup(function () { alert('Hello navTitle!'); });
-
 // Document Ready Closure
 })
 
@@ -101,7 +88,6 @@ let random151Number = function() {
       $("#result").empty();
 
       // var newResultDiv = $()
-      let test= "test"
       let preName = data.name.toString()
       let name = preName.substring(0, 1).toUpperCase() + preName.substring(1, preName.length)
       let weight = data.weight.toString() + " kg";
@@ -118,3 +104,38 @@ let random151Number = function() {
 
     })
   }
+
+  // Color Selector Function
+
+
+  // Name Selector Function
+  let namePoke = function(name){
+    let enteredName = $("#namePokeInput").val();
+    console.log(enteredName);
+    $.ajax({
+      dataType: "json",
+      url: "https://pokeapi.co/api/v2/pokemon/" + enteredName
+    })
+
+    .done(function(data){
+
+      // Reset Result Div
+      $("#result").empty();
+
+      let preName = data.name.toString()
+      let name = preName.substring(0, 1).toUpperCase() + preName.substring(1, preName.length)
+      let weight = data.weight.toString() + " kg";
+      let height = data.height.toString() + " m";
+      let id = data.id
+      let photo = data.sprites.front_shiny
+
+      $("#result").append(`<img src="${photo}" />`);
+      $("#result").append(`<h1>${name}</h1>`);
+      $("#result").append(`<h1>Height: ${height}</h1>`);
+      $("#result").append(`<h1>Weight: ${weight}</h1>`);
+      $("#result").append(`<h1>ID: ${id}</h1>`);
+
+    })
+  }
+
+  // Id Selector Function
